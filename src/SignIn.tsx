@@ -14,16 +14,25 @@ const SignIn = () => {
       createUserWithEmailAndPassword(auth, userName, password)
         .then((userCredential) => {
           // Signed in
+          //If the logged in is succesfull you will acces this part of teh code where you will 
+          //get a lot of information about the user that have logged in
           const user = userCredential.user;
           console.log("****user****");
           
           console.log(user);
+          /*Whit the information of the user you can populate an state that is mainly focused on 
+          holding the information of the user that is logged in*/
           
           // ...
         })
         .catch((error) => {
+
+          //If the logged in is not succesfull yu will get to this part and with the message you can tell 
+          //the user what went wrong
           const errorCode = error.code;
           const errorMessage = error.message;
+          console.log('*** sign in error ***');
+          console.log(errorMessage);
           // ..
         });
 
