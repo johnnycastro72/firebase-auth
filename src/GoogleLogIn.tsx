@@ -27,6 +27,9 @@ const GoogleLogIn: React.FunctionComponent = () => {
       //get a lot of information about the user that have logged in
       const user = result.user;
 
+      /*Whit the information of the user you can populate an state that is mainly focused on 
+        holding the information of the user that is logged in*/
+
       console.log('*** user ***');
       
 
