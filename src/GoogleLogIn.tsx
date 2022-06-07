@@ -1,27 +1,27 @@
 import { signInWithPopup, GoogleAuthProvider, OAuthCredential } from "firebase/auth";
+import { useDispatch } from "react-redux";
 import { auth } from "./firebaseConfig";
+import { logInInReducer } from "./state/loggedInSlice";
+import { useNavigate } from "react-router-dom";
 
 const providerGoogleAuth = new GoogleAuthProvider();
 
 const GoogleLogIn: React.FunctionComponent = () => {
 
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   const signInWithGoogleButton = () => {
+
     signInWithPopup(auth, providerGoogleAuth)
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential:OAuthCredential | null = GoogleAuthProvider.credentialFromResult(result);
 
-      console.log('*** credential ****');
-      
-      console.log(credential);
-
       const token = credential!.accessToken;
 
-
-      console.log('*** token ***');
-      
-      console.log(token);
-      
       // The signed-in user info.
       //If the logged in is succesfull you will acces this part of the code where you will 
       //get a lot of information about the user that have logged in
@@ -30,11 +30,10 @@ const GoogleLogIn: React.FunctionComponent = () => {
       /*Whit the information of the user you can populate an state that is mainly focused on 
         holding the information of the user that is logged in*/
 
-      console.log('*** user ***');
+      dispatch(logInInReducer(user))
       
+      navigate('/welcome')
 
-      console.log(user);
-      
       // ...
     }).catch((error) => {
 

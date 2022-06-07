@@ -23,6 +23,7 @@ const LogIn: React.FunctionComponent = () => {
         console.log(userCredential);
         console.log('**** user ***');
         console.log(user)
+        
         /*Whit the information of the user you can populate an state that is mainly focused on 
         holding the information of the user that is logged in*/
         // ...
